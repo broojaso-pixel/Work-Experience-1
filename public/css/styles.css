@@ -781,6 +781,52 @@ img {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
+  
+  /* Homepage hero responsive layout */
+  .hero-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .hero-media {
+    width: 100%;
+    flex-shrink: 1;
+    order: -1;
+  }
+
+  .hero-text {
+    width: 100%;
+    min-width: 0;
+  }
+  
+  /* Homepage navigation responsive layout */
+  .site-header--home .container {
+    flex-wrap: wrap;
+  }
+
+  .site-header--home nav {
+    width: 100%;
+  }
+
+  .site-header--home .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 12px;
+  }
+
+  .site-header--home .nav-links a {
+    padding: 6px 8px;
+    white-space: normal;
+  }
+
+  .site-header--home .nav-links .btn {
+    margin-left: 0;
+  }
+  
+  .playbook-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
