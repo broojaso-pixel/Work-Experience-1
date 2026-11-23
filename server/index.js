@@ -13,7 +13,23 @@ app.post('/contact', (req, res) => {
   const name = (req.body.name || '').trim();
   const email = (req.body.email || '').trim();
   const message = (req.body.message || '').trim();
+  
+  // 1. Honeypot check
+const website = (req.body.website || '').trim();
 
+if (website) {
+  return res.json({ ok: true });
+}
+
+// 2. Timing check
+const formLoadedAt = Number(req.body.formLoadedAt);
+const submissionTime = Date.now();
+const timeTaken = submissionTime - formLoadedAt;
+
+if (!Number.isFinite(formLoadedAt) || formLoadedAt <= 0 || timeTaken < 3000) {
+  return res.json({ ok: true });
+}
+  
   if (!name || !email || !message) {
     return res.status(400).json({ ok: false, error: 'Please fill in your name, email and message.' });
   }

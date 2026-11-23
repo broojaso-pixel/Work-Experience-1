@@ -1,6 +1,9 @@
 const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('form-status');
 
+// Record when the contact form page loads
+const formLoadedAt = Date.now();
+
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -10,6 +13,9 @@ form.addEventListener('submit', async (event) => {
   statusEl.className = 'form-status';
 
   const data = Object.fromEntries(new FormData(form));
+
+  // Send the page-load timestamp to the server
+  data.formLoadedAt = formLoadedAt;
 
   try {
     const response = await fetch('/contact', {
